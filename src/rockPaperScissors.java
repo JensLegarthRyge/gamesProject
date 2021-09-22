@@ -13,22 +13,31 @@ public class rockPaperScissors {
         System.out.println("Player two, please input your name below:");
         playerNames[1] = scanner.nextLine();
 
+
+
         System.out.println(playerNames[0] + " take your pick! (Rock, Paper or Scissors");
         String playerOnePick = scanner.nextLine();
 
         System.out.println(playerNames[1] + " take your pick! (Rock, Paper or Scissors");
         String playerTwoPick = scanner.nextLine();
 
-        if (tempDetermineResult(playerOnePick,playerTwoPick)==2){
+        int scoreCountP0=0;
+        int scoreCountP1=0;
+
+        while (scoreCountP0<=3 || scoreCountP1<=3)
+
+        if (determineResult(playerOnePick,playerTwoPick)==2){
             System.out.println("It's a draw!");
-        } else if(tempDetermineResult(playerOnePick,playerTwoPick)<2) {
-            System.out.println(playerNames[tempDetermineResult(playerOnePick, playerTwoPick)] + " wins!");
+        } else if(determineResult(playerOnePick,playerTwoPick)==0) {
+            System.out.println(playerNames[0] + " wins!");
+            scoreCountP0++;
+        } else if(determineResult(playerOnePick,playerTwoPick)==1) {
+            System.out.println(playerNames[1] + " wins!");
+            scoreCountP1++;
         }
 
-        int scoreCountP1 = 0;
-        int scoreCountP2 = 0;
-
     }
+
     static void ComputerRockPaperScissors() {
         Random rand = new Random();
         int random = rand.nextInt(3);
@@ -68,47 +77,7 @@ public class rockPaperScissors {
         }
     }
 
-    static int determineResult(String[]playerNames, String playerOnePick, String playerTwoPick){
-        int playerOnePickInt;
-        int playerTwoPickInt;
-
-        if (playerOnePick.equalsIgnoreCase("rock")){
-            playerOnePickInt=1;
-        } else if (playerOnePick.equalsIgnoreCase("paper")){
-            playerOnePickInt=2;
-        } else if (playerOnePick.equalsIgnoreCase("scissors")){
-            playerOnePickInt=3;
-        }
-        if (playerTwoPick.equalsIgnoreCase("rock")){
-            playerTwoPickInt=1;
-        } else if (playerTwoPick.equalsIgnoreCase("paper")){
-            playerTwoPickInt=2;
-        } else if (playerTwoPick.equalsIgnoreCase("scissors")){
-            playerTwoPickInt=3;
-        }
-
-
-        if (playerOnePick.equalsIgnoreCase(playerTwoPick)) {
-            return 2;
-            //Player one wins!
-        } else if (playerOnePick.equalsIgnoreCase("rock") && playerTwoPick.equalsIgnoreCase("scissors")) {
-            return 0;
-        } else if (playerOnePick.equalsIgnoreCase("paper") && playerTwoPick.equalsIgnoreCase("rock")) {
-            return 0;
-        } else if (playerOnePick.equalsIgnoreCase("scissors") && playerTwoPick.equalsIgnoreCase("paper")) {
-            return 0;
-            //Player two wins!
-        } else if (playerTwoPick.equalsIgnoreCase("rock") && playerOnePick.equalsIgnoreCase("scissors")) {
-            return 1;
-        } else if (playerTwoPick.equalsIgnoreCase("paper") && playerOnePick.equalsIgnoreCase("rock")) {
-            return 1;
-        } else if (playerTwoPick.equalsIgnoreCase("scissors") && playerOnePick.equalsIgnoreCase("paper")) {
-            return 1;
-        }
-        return 2;
-    }
-
-    static int tempDetermineResult(String playerOnePick, String playerTwoPick){
+    static int determineResult(String playerOnePick, String playerTwoPick){
         if (playerOnePick.equalsIgnoreCase(playerTwoPick)) {
             return 2;
             //Player one wins!
